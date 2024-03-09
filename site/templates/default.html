@@ -1,0 +1,49 @@
+[?][@on minify]
+[#config.stx]
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <link rel="stylesheet" href="[^baseurl]/res/main.css">
+        <link rel="stylesheet" href="[^baseurl]/res/lato/lato.css">
+        <title>Sitix |
+            [i exists title]
+                [^title]
+            [e]
+                Untitled Page
+            [/]
+        </title>
+    </head>
+    <body>
+        <div id="nav">
+            <a href="[^baseurl]"><img src="[^baseurl]/res/sitix-large.png"/></a>
+            <div>
+                [f pages i]
+                    <a href="[^baseurl]/pages/[^i.filename]">[^i.title]</a>
+                [/]
+            </div>
+        </div>
+        <div id="main" class="scrolly-container">
+            [^content]
+        </div>
+        <div id="bottom">
+            <div>
+                <a href="[^baseurl]"><img src="[^baseurl]/res/sitix-large.png" /></a>
+                <span>Sitix by Tyler Clarke</span>
+            </div>
+            <div>
+                Links
+            </div>
+            <div>
+                More Links
+            </div>
+            <div>
+                Information
+            </div>
+        </div>
+        <div id="actualbottom">Site designed by Tyler Clarke and built with Sitix.</div>
+        <script src="[^baseurl]/res/main.js"></script>
+        <script src="[^baseurl]/res/scrolly.js"></script>
+    </body>
+</html>

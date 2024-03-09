@@ -1,0 +1,30 @@
+[!][@on minify]
+/* Sitix script for the Lato font-face declarations. My editor shows numerous syntax errors; this is because it does not support Sitix scripting. */
+[#config.stx]
+@font-face {
+    font-family: Lato;
+    src: url("[^baseurl]/res/lato/Lato-Italic.ttf");
+    font-weight: normal;
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url("[^baseurl]/res/lato/Lato-Bold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url("[^baseurl]/res/lato/Lato-BoldItalic.ttf");
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url("[^baseurl]/res/lato/Lato-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,8 @@
+[?]
+
+[=textimage-]
+    <div class="textimage scrolly">
+        <div class="textimage-text">[^textimage_text]</div>
+        <img class="textimage-image" src="[^textimage_source]"/>
+    </div>
+[/]

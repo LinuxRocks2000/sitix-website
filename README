@@ -1,0 +1,5 @@
+This is the website code for Sitix documentation and stuff. site/ contains the actual Sitix scripts, and output/ contains the site.
+Run `sitix site -c production` to build (`sitix site` alone will build the development version, which expects to be hosted at http://localhost:8080).
+If you don't *have* sitix, go to the website (at https://swaous.asuscomm.com/sitix) for install instructions.
+
+This website keeps Sitix minification on at all times with [@on minify].
