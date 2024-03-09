@@ -7,6 +7,7 @@
     <head>
         <link rel="stylesheet" href="[^baseurl]/res/main.css">
         <link rel="stylesheet" href="[^baseurl]/res/lato/lato.css">
+        <link rel="icon" href="[^baseurl]/res/sitix.svg">
         <title>Sitix |
             [i exists title]
                 [^title]
@@ -30,19 +31,34 @@
         <div id="bottom">
             <div>
                 <a href="[^baseurl]"><img src="[^baseurl]/res/sitix-large.png" /></a>
-                <span>Sitix by Tyler Clarke</span>
+                <span>Sitix by Tyler Clarke</span><br>
             </div>
             <div>
-                Links
+                <b>Shameless Plugs</b><br>
+                <a href="https://swaous.asuscomm.com">Tyler Clarke's personal site</a><br>
+                <a href="https://linuxrocks2000.github.io/">Tyler Clarke's (old) webcomic/blog/personal site</a><br>
+                <a href="https://avrahamsociety.org/">The Avraham Society (first site to be officially generated with Sitix)</a><br>
+                <a href="https://linuxrocks2000.github.io/not-art-gallery">The Not Art Gallery</a>
             </div>
             <div>
-                More Links
+                <b>Places in This Site</b><br>
+                <a href="[^baseurl]">Home</a><br>
+                [f pages i]
+                    <a href="[^baseurl]/pages/[^i.filename]">[^i.title]</a><br>
+                [/]
             </div>
             <div>
-                Information
+                <b>Information</b><br>
+                Sitix (including this website) is <a href="https://opensource.org/osd">open-source</a> <a href="https://www.fsf.org/about/">Free Software</a> protected by <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPLv3</a>.
+                Looking to contribute? The source code for this website is hosted on <a href="https://github.com/LinuxRocks2000/sitix-website">Github</a>, as is
+                <a href="https://github.com/LinuxRocks2000/sitix-rewrite">Sitix itself</a>.<br>
+                Sitix is still young and probably buggy; if you have issues, submit a bug report at <a href="https://github.com/LinuxRocks2000/sitix-rewrite/issues">
+                    the issues page
+                </a> or contact me at <a href="mailto:plupy44@gmail.com">plupy44@gmail.com</a> (github issue preferred).<br>
+                If you want to contribute, but don't know where to start, see <a href="[^baseurl]/pages/todo">The Todo List</a>.
             </div>
         </div>
-        <div id="actualbottom">Site designed by Tyler Clarke and built with Sitix.</div>
+        <div id="actualbottom">Site designed by Tyler Clarke and built with Sitix. This page uses the <a href="https://www.latofonts.com/lato-free-fonts/">Lato fonts</a>.</div>
         <script src="[^baseurl]/res/main.js"></script>
         <script src="[^baseurl]/res/scrolly.js"></script>
     </body>

@@ -3,13 +3,6 @@
 [#config.stx]
 @font-face {
     font-family: Lato;
-    src: url("[^baseurl]/res/lato/Lato-Italic.ttf");
-    font-weight: normal;
-    font-style: italic, oblique;
-}
-
-@font-face {
-    font-family: Lato;
     src: url("[^baseurl]/res/lato/Lato-Bold.ttf");
     font-weight: bold;
     font-style: normal;
@@ -19,7 +12,14 @@
     font-family: Lato;
     src: url("[^baseurl]/res/lato/Lato-BoldItalic.ttf");
     font-weight: bold;
-    font-style: italic, oblique;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url("[^baseurl]/res/lato/Lato-Italic.ttf");
+    font-weight: normal;
+    font-style: italic;
 }
 
 @font-face {

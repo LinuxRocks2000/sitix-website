@@ -1,5 +1,8 @@
 [?]
 
+[=textimage-text ]
+[=textimage-image ]
+
 [=textimage-]
     <div class="textimage scrolly">
         <div class="textimage-text">[^textimage_text]</div>
