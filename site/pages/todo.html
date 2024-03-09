@@ -1,5 +1,6 @@
 [!]
 [=title Todo]
+[=isSimple ]
 [=content-]
 <div class="text">
     Sitix is still a pretty young piece of software, so if there's a missing feature that isn't on this list, don't hesitate to submit a feature request on <a href="https://github.com/LinuxRocks2000/sitix-rewrite/issues">the issues page</a>.
@@ -11,6 +12,8 @@
         <li>Code cleaning (need to fix memory management especially)</li>
         <li>Make config less hack (move from \[i config] to \[i exists], and create empty objects on global with -c)</li>
         <li>Add an unpack/ghost operator so setting objects to other objects works (something like \[=ghostingName-] \[%ghostedObject] \[/])</li>
+        <li>Safety: Sitix should not delete your entire codebase if you accidentally mistype the command.</li>
+        <li>Get rid of that stupid "something has gone terribly wrong" warning. It's not a problem, it's just an artefact of an old debugging marathon.</li>
     </ul>
 </div>
 [/]

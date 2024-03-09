@@ -1,8 +1,22 @@
-[!]
+[!][@on minify]
 [=title About]
+[=isSimple ]
 [=content-]
 <div class="text">
-    About Page (TODO)
+    Sitix began in Summer '23 when I got fed up with the quirks of Jekyll and decided to build my own templating engine. I put together a schematic not unlike
+    modern Sitix and began implementing it in Rust (which I had just learned), but I quickly realized that my pattern was simply not going to work for such a complex
+    design, and so after a lot of fruitless debugging and such I eventually stopped developing it. It's probably still up <a href="https://github.com/LinuxRocks2000/sitix">here</a>.<br>
+    In November '24 I was working on a client's website and, once again, got fed up with Jekyll. I remembered the Sitix project I'd begun in 2023 and tried to implement it
+    - but failed spectacularly. Sitix was a shipwreck. So, through early March, I reimplemented: I moved to C++, a much more familiar language; changed the structure to be
+    just quirky enough to satisfy me while still robust and usable, and quickly got Sitix behind several websites.<br><br>
+    Sitix is designed to replace everything I like about Jekyll (Liquid. It's just Liquid. I hate literally everything else), while also providing a saner interface,
+    and being much easier to compile and install (farewell, Gem Hell). I also incorporated concepts from JavaScript (especially JSON); parts of the object model are
+    obviously inspired by JavaScript, and the tree-like structure of a Sitix file is heavily remnant of JSON. I also added a little of my own "charm"; evident
+    in the scope system (which is even less sane than JavaScript's) and the not-quite-XML tag structure.<br><br>
+    Sitix is a very young project, and I'm still working out the bugs and adding crucial features. The stuff I'm working on is usually going to be near the top of
+    <a href="[^baseurl]/pages/todo.html">the TODO list</a>.<br><br>
+    Sitix is protected by GNU GPLv3. Please put a little "built with Sitix by Tyler Clarke" with a link to this website somewhere on every Sitix-generated page
+    you make (Sitix can make this easy with templates :D), if you choose to use Sitix.
 </div>
 [/]
 [#templates/default.html]

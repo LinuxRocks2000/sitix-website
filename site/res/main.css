@@ -1,4 +1,6 @@
-*, body, html {
+[!][@on minify]
+[#config.stx]
+*:not(ul), body, html {
     margin: 0px;
     padding: 0px;
     font-family: Lato, Arial, Helvetica, sans-serif;
@@ -172,12 +174,17 @@ i.highlight {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    text-align: right;
-    padding-right: 10vw;
+    text-align: center;
 }
 
 h1 {
     font-size: 6em;
+    text-align: right;
+    padding-right: 10vw;
+}
+
+h2 {
+    font-size: 3em;
 }
 
 div.toptext {
@@ -231,4 +238,30 @@ code {
     background-color: #000044;
     color: white;
     font-family: monospace;
+}
+
+.note {
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: orange;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    min-height: 180px;
+    font-size: 1.2em;
+}
+
+.note::before {
+    content: "";
+    background-image: url("[^baseurl]/res/warning.svg");
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 20px;
+    float: left;
 }

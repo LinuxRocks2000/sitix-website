@@ -1,11 +1,16 @@
 [!]
 [=title Install Sitix]
+[=isSimple ]
 [=content-]
 <div class="text">
+    Sitix is written in C++ without any frameworks or anything. It doesn't muck about with Node.JS or Ruby or any such stuff. This means native-level performance,
+    but requires compilation and testing on many platforms. It's guaranteed to work on Fedora Linux and probably works in most other Linuxes;
+    MacOS is a <i>possibility</i>. Windows, being too stone-age for POSIX, probably won't be able to run Sitix.<br><br>
     At the moment, Sitix has no prebuilt binaries; I hope to include RPM/DEB packages in the next release.<br>To install it, you'll need to clone
     <a href="https://github.com/LinuxRocks2000/sitix-rewrite">the Github repository</a>, run <code>./build.sh</code>, and (assuming the build completes successfully)
     copy the generated <code>sitix</code> binary to some PATH-accessible location (<code>/usr/bin</code> is a good bet). Sitix requires a C++20-compatible
-    G++ installation; it has no other dependencies. Sitix is theoretically cross-compilable to Windows, but I have no intention of ever officially supporting Windows.
+    G++ (usually included with the gcc package); it has no other dependencies. Sitix is theoretically cross-compilable to Windows, but I have no intention of ever officially supporting it;
+    Microsoft doesn't deserve it.
 </div>
 <div class="text">
     Once you've got Sitix installed, see <a href="[^baseurl]/pages/usage">Usage</a>.

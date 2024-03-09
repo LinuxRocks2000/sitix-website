@@ -1,0 +1,58 @@
+[!]
+[=title Usage]
+[=isSimple ]
+[=content-]
+<div class="text">
+    Sitix is a KISS program, so there's not a lot of setup. Once you've got it installed (see <a href="[^baseurl]/pages/install">for information on that</a>),
+    you need a project to build. The simplest Sitix project structure is just a <code>site</code> folder, which contains the actual Sitix "scripts". When
+    (you absolutely must be outside of the site directory to do this!) you run <code>sitix site</code>, Sitix will delete the <code>output</code> directory
+    and all contents, if it exists, and then create a new <code>output</code> directory for the compiled site code. Then, Sitix will walk down the tree of
+    your <code>site</code> directory, creating appropriate subdirectories and directly copying over any file that doesn't have an opening phrase - <code>\[!]</code>,
+    for a Sitix page, or <code>\[?]</code> for a data page (which will not be rendered itself, but may be used for templating or configuration). The opening phrase
+    MUST be the first three bytes of the file; if there are any whitespaces before it, the file will be treated as plain data. If you want
+    it to render to a different directory, pass the <code>-o location</code> flag.
+</div>
+<div class="note">
+    WARNING: <code>-o</code> is very dangerous! If you tell Sitix to render to a directory with important information in it, <b>that directory is as good as gone</b>.
+    At the moment Sitix does not put any effort into questioning your choices, so make sure to double-check everything is okay before running any sitix command! Avoiding
+    <code>-o</code> unless you <i>really</i> need it is generally a good policy.
+</div>
+<div class="text">
+    Let's cover some syntax. All Sitix commands are enclosed in brackets like <code>\[command]</code> (you can escape brackets with backslashes). There aren't very many
+    Sitix commands; at the moment, it's just:
+    <ul>
+        <li><code>\[=variableName variableContent]</code>: This simply sets <code>variableName</code> to be equal to <code>variableContent</code> at that point on the scope tree.</li>
+        <li><code>\[=variablename-]variableContent\[/]</code>: The expanded form of above. This allows for much more complicated variables, including variables containing
+        Sitix commands (in the compressed form, anything inside MUST be plaintext). It's generally preferred to use this when the content is more than a word or two.</li>
+        <li><code>\[^variableName]</code>: "Dereferences" a variable, forcing it to render. If that variable contains other variables (like <code>\[=parent-] \[=child-] content \[/] \[/]</code>),
+        the child variables will NOT be rendered, but if variables with the same name as the children exist at some point in the parent tree of the dereferenced variable exist, they will be replaced.
+        Variables at the dereferencing position will NOT be replaced.</li>
+        <li><code>\[#filename]</code>: Dereferences a Sitix file (or plain file, which would just copy over content without processing it) at this position. The filename must be relative
+        to the root directory (usually the <code>site</code> directory), rather than the directory the including file is stored in. This is very useful for templating.</li>
+        <li><code>\[i request &lt;...&gt;]\[e]\[/]</code>: This is an if condition. If in Sitix contains an object (between the <code>\[i]</code> and either <code>\[/]</code> or <code>\[e]</code>) that will
+            be rendered if the condition evaluates to "true", and, optionally (between <code>\[e]</code> and <code>\[/]</code>), an object that will be rendered if the condition is false.<br>
+            Requests can be,
+            <ul>
+                <li><code>config configName</code>: Check whether or not a command-line config switch is enabled (you can enable them with <code>-c configName</code>).</li>
+                <li><code>equals variable1 variabl2</code>: Check whether two variables are the same (the check is flawed, but pretty good. See the relevant section in <code>main.cpp</code>
+                for information on this.)</li>
+                <li><code>exists variable</code>: Check whether a variable exists. Good for simple boolean flags.</li>
+            </ul>
+        </li>
+        <li><code>\[f array iterator]</code>: For loop that iterates over an array (note: in Sitix, every subdirectory of the root dir can be treated as
+        an array of objects, each object being a file! This allows things like generating blog links). The <code>iterator</code> variable will be, for every item,
+        the referenced array element. <b>Note: When iterating over a directory, every file will be given a <code>filename</code> property!</b> This can be used like
+        <code>\[f directory i]\[^i.filename]\[/]</code>, which would spew out the filenames of every file in that directory.</li>
+        <li><code>\[@command option]</code>: Set a file-specific flag. File-specific flags are used to do things like minify text. At the moment, the only valid @-commands
+        are <code>\[@on minify]</code>, which enables minifier for the file, and <code>\[@off minify]</code>, which disables minifier. Minifier simply reduces chains of whitespace
+        to a single whitespace. In the future, <code>\[@on markdown]</code> and <code>\[@off markdown]</code> will allow Markdown-like processing across the file.</li>
+    </ul>
+    You can use Sitix commands in any file with a Sitix opening phrase; Sitix commands in files that do not have an opening phrase will be ignored.<br>
+    And that's it! To see how these are used creatively in the wild, check out <a href="https://github.com/LinuxRocks2000/sitix-website">the source code for this website</a>.
+</div>
+<div class="text">
+    For a more thorough look at Sitix, check out <a href="https://github.com/LinuxRocks2000/sitix-rewrite">the source code</a>. There's a rather large comment at the start of
+    <code>main.cpp</code> that provides a deep look at Sitix syntax and usage.
+</div>
+[/]
+[#templates/default.html]
