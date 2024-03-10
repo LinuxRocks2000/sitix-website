@@ -48,16 +48,13 @@ div.text {
     padding-bottom: 50px;
     padding-left: 15vw;
     padding-right: 15vw;
+    line-height: 2em;
 }
 
 #bottom {
     box-shadow: 0px 0px 5px black;
     padding: 50px;
-    display: grid;
-    grid-template-areas: 'top top top'
-    'line1 line2 line3';
     margin-top: 50px;
-    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #bottom > div:first-child {
@@ -81,9 +78,6 @@ div.text {
 #bottom > div:first-child > * {
     margin-bottom: 20px;
     margin-top: 20px;
-}
-
-#bottom > div:first-child > span {
 }
 
 a {
@@ -147,6 +141,7 @@ span.big {
     position: sticky;
     top: 50vh;
     transform: translateY(-50%);
+    margin-left: 10vw;
 }
 
 #switchybit > div {
@@ -204,6 +199,7 @@ div.toptext {
     flex: 2;
     padding: 100px;
     font-size: 1.2em;
+    line-height: 2em;
 }
 
 .textimage:nth-child(2n + 1) {
@@ -264,4 +260,22 @@ code {
     background-repeat: no-repeat;
     margin: 20px;
     float: left;
+}
+
+#bottomFlex {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bottomFlex > * {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#bottomFlex > *:nth-child(2) {
+    flex-grow: 5;
+}
+
+#bottomFlex > *:nth-child(3) {
+    max-width: 40vw;
 }
