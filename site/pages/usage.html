@@ -34,7 +34,7 @@
             Requests can be,
             <ul>
                 <li><code>config configName</code>: Check whether or not a command-line config switch is enabled (you can enable them with <code>-c configName</code>).</li>
-                <li><code>equals variable1 variabl2</code>: Check whether two variables are the same (the check is flawed, but pretty good. See the relevant section in <code>main.cpp</code>
+                <li><code>equals variable1 variable2</code>: Check whether two variables are the same (the check is flawed, but pretty good. See the relevant section in <code>main.cpp</code>
                 for information on this.)</li>
                 <li><code>exists variable</code>: Check whether a variable exists. Good for simple boolean flags.</li>
             </ul>
@@ -47,7 +47,13 @@
         are <code>\[@on minify]</code>, which enables minifier for the file, and <code>\[@off minify]</code>, which disables minifier. Minifier simply reduces chains of whitespace
         to a single whitespace. In the future, <code>\[@on markdown]</code> and <code>\[@off markdown]</code> will allow Markdown-like processing across the file.</li>
     </ul>
-    You can use Sitix commands in any file with a Sitix opening phrase; Sitix commands in files that do not have an opening phrase will be ignored.<br>
+    You can use Sitix commands in any file with a Sitix opening phrase; Sitix commands in files that do not have an opening phrase will be ignored.<br><br>
+    There are a number of "special objects" that resolve magically at different places. The most useful two are <code>__after__</code> and <code>__before__</code>,
+    which crop up in for loops. They allow you to reference the object that came before or after, like <code>\[^i.__after__]</code>. __this__ is pretty much useless
+    except in <i>very</i> niche situations, because of the unclear rules behind it; I will document those on a later date. __file__ is always the root object of the current file,
+    - you can most likely guess why that's useful.
+</div>
+<div class="text">
     And that's it! To see how these are used creatively in the wild, check out <a href="https://github.com/LinuxRocks2000/sitix-website">the source code for this website</a>.
 </div>
 <div class="text">
