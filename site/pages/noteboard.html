@@ -7,6 +7,8 @@
     periodically for information on new releases, design considerations, known bugs, etc. You can think of it as a miniblog.
 </div>
 <div class="text">
+    <b>2024-3-11:</b> Model updates, and now this site can actually be built by the latest sitix updates :D.
+    <br><br>
     <b>2024-3-10:</b> Now the project-object model is a LOT better. When a lookup fails for something that is also a valid filename, that file is loaded as an object
     (so subsequent lookups will find it). This means it's possible to replicate the behavior of \[#file] with \[^file], although because of child-access you need to
     escape the filename (like <code>\[^directory/file\\.html]</code>). The latter also allows accessing objects inside a file without rendering that file. The old include
