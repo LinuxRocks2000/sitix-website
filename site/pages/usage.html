@@ -10,7 +10,10 @@
     your <code>site</code> directory, creating appropriate subdirectories and directly copying over any file that doesn't have an opening phrase - <code>\[!]</code>,
     for a Sitix page, or <code>\[?]</code> for a data page (which will not be rendered itself, but may be used for templating or configuration). The opening phrase
     MUST be the first three bytes of the file; if there are any whitespaces before it, the file will be treated as plain data. If you want
-    it to render to a different directory, pass the <code>-o location</code> flag.
+    it to render to a different directory, pass the <code>-o location</code> flag.<br><br>
+    Configuration can be managed with the <code>-c</code> command line directive, which directly inserts a Sitix object to the virtual root scope. For instance,
+    this site uses the <code>-c production</code> argument to enable the production endpoint as opposed to the local development endpoint. It could also be
+    something like <code>-c endpoint https://swaous.asuscomm.com/sitix</code>, directly inserting the endpoint.
 </div>
 <div class="note">
     WARNING: <code>-o</code> is very dangerous! If you tell Sitix to render to a directory with important information in it, <b>that directory is as good as gone</b>.
@@ -29,16 +32,8 @@
         Variables at the dereferencing position will NOT be replaced.</li>
         <li><code>\[#filename]</code>: Dereferences a Sitix file (or plain file, which would just copy over content without processing it) at this position. The filename must be relative
         to the root directory (usually the <code>site</code> directory), rather than the directory the including file is stored in. This is very useful for templating.</li>
-        <li><code>\[i request &lt;...&gt;]\[e]\[/]</code>: This is an if condition. If in Sitix contains an object (between the <code>\[i]</code> and either <code>\[/]</code> or <code>\[e]</code>) that will
-            be rendered if the condition evaluates to "true", and, optionally (between <code>\[e]</code> and <code>\[/]</code>), an object that will be rendered if the condition is false.<br>
-            Requests can be,
-            <ul>
-                <li><code>config configName</code>: Check whether or not a command-line config switch is enabled (you can enable them with <code>-c configName</code>).</li>
-                <li><code>equals variable1 variable2</code>: Check whether two variables are the same (the check is flawed, but pretty good. See the relevant section in <code>main.cpp</code>
-                for information on this.)</li>
-                <li><code>exists variable</code>: Check whether a variable exists. Good for simple boolean flags.</li>
-            </ul>
-        </li>
+        <li><code>\[i &lt;...&gt;]main section\[e]else section\[/]</code>: This is an if condition. The content of the condition is an Evals directive. If it's truthy, the main section of the
+        if statement will be rendered. If it's not truthy, the else section will be rendered. You can put whatever you want in either section. For more information on Evals, see below.</li>
         <li><code>\[f array iterator]</code>: For loop that iterates over an array (note: in Sitix, every subdirectory of the root dir can be treated as
         an array of objects, each object being a file! This allows things like generating blog links). The <code>iterator</code> variable will be, for every item,
         the referenced array element. <b>Note: When iterating over a directory, every file will be given a <code>filename</code> property!</b> This can be used like
@@ -52,6 +47,24 @@
     which crop up in for loops. They allow you to reference the object that came before or after, like <code>\[^i.__after__]</code>. __this__ is pretty much useless
     except in <i>very</i> niche situations, because of the unclear rules behind it; I will document those on a later date. __file__ is always the root object of the current file,
     - you can most likely guess why that's useful.
+</div>
+<div class="text">
+    Evals is a very simple stack-based language meant for evaluating string statements. When data is entered in the Evals program, it's immediately pushed
+    to the stack (like <code>"hello"</code>, <code>3.14</code>, <code>true</code>, or <code>some.sitix.variable</code>). At the end of Evals rendering, whatever is left on the stack
+    is considered the result (if there is more than one thing on the stack, Evals will give you a Bad Syntax error and return an ErrorObject). To manipulate data,
+    there are a number of commands that work on the top of the stack:
+    <ul>
+        <li><code>equals</code>: Checks if two values on the stack are equal to each other. It will remove both values from the stack and add a boolean value as the result.</li>
+        <li><code>not</code>: Pops the top value off the stack and replaces it with a boolean equal to the opposite of the truthyness of that object. <code>"Hello World" not</code>
+        would just be <code>false</code>, for instance.</li>
+    </ul>
+    Truthyness in Evals is not dissimilar to JavaScript. Empty strings are falsey, and all other strings are truthy; 0 is falsey and all other numbers are truthy, and booleans are truthy or falsey based on their value.
+    Sitix variables are considered truthy if the lookup is successful, and falsey otherwise; this allows for a replacement to the old <code>\[i exists]</code> and <code>\[i config]</code>,
+    like <code>\[i conf/prod]</code> would check if the <code>conf/prod</code> variable exists in scope (which could be set by <code>-c conf/prod</code>, for instance).
+    Evals will render Sitix variables as strings to run comparisons on them. This means you must be careful - if rendering that object would change a variable you don't want changed, for instance,
+    you'll end up with some very odd behavior. Rendering objects to strings is also dangerous because of the sheer size of some Sitix objects - you can store many gigabytes of data safely in
+    a PlainText object, which would be forced into main memory by an Evals comparison (Evals will not render Sitix objects unless they're used in a comparison with a string; comparing
+    two Sitix objects is safe). Be careful.
 </div>
 <div class="text">
     And that's it! To see how these are used creatively in the wild, check out <a href="https://github.com/LinuxRocks2000/sitix-website">the source code for this website</a>.

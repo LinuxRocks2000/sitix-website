@@ -1,5 +1,5 @@
 [?][@on minify]
 [=baseurl http://localhost:8080]
-[i config production]
+[i production]
     [=baseurl https://swaous.asuscomm.com/sitix]
 [/]
