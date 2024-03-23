@@ -38,9 +38,11 @@
         an array of objects, each object being a file! This allows things like generating blog links). The <code>iterator</code> variable will be, for every item,
         the referenced array element. <b>Note: When iterating over a directory, every file will be given a <code>filename</code> property!</b> This can be used like
         <code>\[f directory i]\[^i.filename]\[/]</code>, which would spew out the filenames of every file in that directory.</li>
-        <li><code>\[@command option]</code>: Set a file-specific flag. File-specific flags are used to do things like minify text. At the moment, the only valid @-commands
-        are <code>\[@on minify]</code>, which enables minifier for the file, and <code>\[@off minify]</code>, which disables minifier. Minifier simply reduces chains of whitespace
-        to a single whitespace. In the future, <code>\[@on markdown]</code> and <code>\[@off markdown]</code> will allow Markdown-like processing across the file.</li>
+        <li><code>\[@command option]</code>: Set a file-specific flag. File-specific flags are used to do things like minify text. For example, the minifier is controlled by
+        <code>\[@on minify]</code>, which enables minifier for the file, and <code>\[@off minify]</code>, which disables minifier. Minifier simply reduces chains of whitespace
+        to a single whitespace. <code>\[@on markdown]</code> and <code>\[@off markdown]</code> allow Markdown-like processing across the file. Sitix Markdown is not quite ready
+        for widespread use, yet, but at the time of writing supports *italic*, **bold**, __underline__, ~~strikethrough~~, `code`, and automatic paragraphs/line breaks.
+        It works quite nicely with minifier, yes.</li>
     </ul>
     You can use Sitix commands in any file with a Sitix opening phrase; Sitix commands in files that do not have an opening phrase will be ignored.<br><br>
     There are a number of "special objects" that resolve magically at different places. The most useful two are <code>__after__</code> and <code>__before__</code>,
