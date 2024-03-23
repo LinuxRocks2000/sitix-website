@@ -43,6 +43,11 @@
         to a single whitespace. <code>\[@on markdown]</code> and <code>\[@off markdown]</code> allow Markdown-like processing across the file. Sitix Markdown is not quite ready
         for widespread use, yet, but at the time of writing supports *italic*, **bold**, __underline__, ~~strikethrough~~, `code`, and automatic paragraphs/line breaks.
         It works quite nicely with minifier, yes.</li>
+        <li><code>\[>filename]object\[/]</code>: Renders an object into a new file represented by filename. Filename should be a relative path as it will be transmuted into
+        the output directory. This is very useful for, say, turning a single Sitix object file containing webcomic post data into a directory full of posts.</li>
+        <li><code>\[~object1 object2]</code>: Sets the ghost on object1 to object2, effectively cloning object2 to object1. It is not a true copy; changes in object2 will be
+        reflected in object1. However, unlike with normal dereference-setting (<code>\[=object1]\[^object2]\[/]</code>), you can access nested objects inside the ghost.
+        It's not unlike changing the value of a pointer in C.</li>
     </ul>
     You can use Sitix commands in any file with a Sitix opening phrase; Sitix commands in files that do not have an opening phrase will be ignored.<br><br>
     There are a number of "special objects" that resolve magically at different places. The most useful two are <code>__after__</code> and <code>__before__</code>,
@@ -59,6 +64,13 @@
         <li><code>equals</code>: Checks if two values on the stack are equal to each other. It will remove both values from the stack and add a boolean value as the result.</li>
         <li><code>not</code>: Pops the top value off the stack and replaces it with a boolean equal to the opposite of the truthyness of that object. <code>"Hello World" not</code>
         would just be <code>false</code>, for instance.</li>
+        <li><code>concat</code>: Stringifies the top two items on stack and concatenates them together in order.</li>
+        <li><code>strip_fname</code>: Cuts off the directories and the file extension of a file, going from "test/home/base.py.out" to "base.py", for instance.</li>
+        <li><code>copy</code>: Copy the top thing on stack.</li>
+        <li><code>count_back</code>: Pops the top two items off stack and searches for the first occurring index of the smaller string in the larger string. Don't get it? Read the code.</li>
+        <li><code>slice_left</code>: Pops the top two items off stack and, assuming one is a number, stringifies the other one and slices from the start of that to the index
+        represented by the number. This discards the character at the index, so <code>"hello,world" 5 slice_left</code> returns just "hello".</li>
+        <li><code>slice_right</code>: Same behavior as slice_left, except it slices the "right" side, so <code>"hello,world" 5 slice_left</code> would return "world".</li>
     </ul>
     Truthyness in Evals is not dissimilar to JavaScript. Empty strings are falsey, and all other strings are truthy; 0 is falsey and all other numbers are truthy, and booleans are truthy or falsey based on their value.
     Sitix variables are considered truthy if the lookup is successful, and falsey otherwise; this allows for a replacement to the old <code>\[i exists]</code> and <code>\[i config]</code>,
