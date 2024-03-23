@@ -1,7 +1,7 @@
 [?]
 
-[=textimage-text ]
-[=textimage-image ]
+[=textimage-text ""]
+[=textimage-image ""]
 
 [=textimage-]
     <div class="textimage scrolly">

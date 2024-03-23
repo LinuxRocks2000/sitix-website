@@ -1,5 +1,5 @@
 [?][@on minify]
-[=baseurl http://localhost:8080]
+[=baseurl "http://localhost:8080"]
 [i production]
-    [=baseurl https://swaous.asuscomm.com/sitix]
+    [=baseurl "https://swaous.asuscomm.com/sitix"]
 [/]
