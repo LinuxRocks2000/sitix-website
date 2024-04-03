@@ -7,6 +7,23 @@
     periodically for information on new releases, design considerations, known bugs, etc. You can think of it as a miniblog.
 </div>
 <div class="text">
+    <b>2024-4-3:</b> Reworked the project fully over the last few weeks. It's now a LOT better. The lookup and childSearchUp functions are the main bad things left
+    (also a lot of crappy string manipulation, but that's less of a "problem" and more of an "optimization goal").<br>
+    Markdown can do links now and they're not bad. Still gotta implement some stuff, though.<br>
+    Relative files are now supported! The old way of doing files will not be deprecated for the forseeable future, but now you can explicitly specify that you want
+    to check the project root with /, and if the file ISN'T absolute, it'll be looked-up in the directory of the file containing the object running the lookup.
+    This may eventually produce odd behavior with lookups in different parts of a project, but for now it should be fine; I'm not keeping the current lookup function for long.<br>
+    This means that I'm now moving forward with one of my major goals: downloadable templates! It hasn't been listed in todo (I'm lazy) but it's been on the list in my head for a while.<br>
+    One of the few things I liked about Jekyll was the builtin development server that watched the project tree for changes, and rebuilt them on the fly - 
+    so sitix now does this too! Activate the -w flag to use Sitix in Watchdog mode. It's pretty robust and sane, so (aside from a few annoying seggies
+    I'm working on fixing) it should be usable as a daemon on servers using Sitix. This is very useful for situations like a blog that needs to update from
+    a web interface (another daemon attached to an endpoint handles auth and creates/updates Sitix files).<br>
+    My main goal for Sitix since I started was to <i>fully</i> replace Jekyll. In my not-so-humble opinion, it's already better, but it doesn't cover all the features;
+    I need a Github action for building Sitix, for one (the GH Pages integration on Jekyll is <i>phenomenal</i>).<br>
+    Finally, a little note about usage: <b>Sitix is meant to be scriptable</b>. Sitix alone only does static build; it's useful and recommended to write a
+    Bash script that invokes a sitix build and then does other things with it. For this reason, I at the moment have no plans to officially support fancy stuff like moving Sitix
+    outputs to another Git branch. 
+    <br><br>
     <b>2024-3-23:</b> Added Evals. It's a simple evaluated stack-based language designed specifically for Sitix. At the moment, all it does is compare things, but it's
     a damn sight better than how if statements used to work. Eventually I'll add vscript to inline object (<code>\[=name content]</code>) directives; for now, 
     it's present in if statements and the <code>\[v]</code> directive.<br>

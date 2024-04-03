@@ -71,6 +71,9 @@
         <li><code>slice_left</code>: Pops the top two items off stack and, assuming one is a number, stringifies the other one and slices from the start of that to the index
         represented by the number. This discards the character at the index, so <code>"hello,world" 5 slice_left</code> returns just "hello".</li>
         <li><code>slice_right</code>: Same behavior as slice_left, except it slices the "right" side, so <code>"hello,world" 5 slice_left</code> would return "world".</li>
+        <li><code>filenameify</code>: Reduce it to a lowercased POSIX-compliant filename including only a-z, 0-9, ., _, and -. It will also shorten at points where two - would be
+        in sequence, for pretty-printing reasons.</li>
+        <li><code>trim</code>: Trim off whitespace around a string (note: this will render Sitix objects).</li>
     </ul>
     Truthyness in Evals is not dissimilar to JavaScript. Empty strings are falsey, and all other strings are truthy; 0 is falsey and all other numbers are truthy, and booleans are truthy or falsey based on their value.
     Sitix variables are considered truthy if the lookup is successful, and falsey otherwise; this allows for a replacement to the old <code>\[i exists]</code> and <code>\[i config]</code>,
